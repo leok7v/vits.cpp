@@ -2,11 +2,12 @@
 // Created by Maximiliano Levi on 6/15/24.
 //
 #include "include/debug.h"
-#include <execinfo.h>
+// #include <execinfo.h>
 #include <iostream>
 #include <cstdlib>
 
 void print_stack_trace() {
+#if 0
     const int maxFrames = 100;
     void* frames[maxFrames];
     int frameCount = backtrace(frames, maxFrames);
@@ -20,4 +21,5 @@ void print_stack_trace() {
     } else {
         std::cerr << "Failed to generate backtrace symbols." << std::endl;
     }
+#endif
 }

@@ -1,8 +1,11 @@
-#include <vits.h>
+#include "vits.h"
 #include <stdio.h>
 #include <assert.h>
 #include <iostream>
 #include <fstream>
+
+#pragma comment(lib, "vits.lib")
+#pragma comment(lib, "ggml.lib")
 
 struct WAVHeader {
     char riff_header[4];         // Contains "RIFF"
@@ -65,9 +68,9 @@ const char* phrase = "Cada amanecer trae consigo nuevas oportunidades para crece
 
 
 int main(int argc, char ** argv) {
-    vits_model * model = vits_model_load_from_file("./scripts/vits-spanish.ggml");
+    vits_model * model = vits_model_load_from_file("../scripts/vits-spanish.ggml");
     assert(model != nullptr);
-
+model->verbose = 1;
     auto result = vits_model_process(model, phrase);
     if (result.size > 0) {
         printf("Generated: %d samples of audio %f %f %f\n", result.size, result.data[0], result.data[1],

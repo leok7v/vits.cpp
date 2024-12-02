@@ -5,11 +5,11 @@
 #include "include/vits_tokenizer.h"
 #include "include/common.h"
 #include "include/debug.h"
-
+#include <algorithm>
 
 #ifdef VITS_ESPEAK
 #include <cstring>
-#include <espeak-ng/speak_lib.h>    
+#include <espeak-ng/speak_lib.h>
 #endif
 
 vits_tokenizer::vits_tokenizer() {
@@ -144,7 +144,7 @@ std::vector<char> convert_to_phonetic(char* b, char* e)
 	    }
 	    if(b != e)
 		ret.push_back(' ');
-		
+
 	}
 	else
 	{
@@ -183,7 +183,7 @@ std::vector<int32_t> vits_tokenizer::tokenize(const std::string& text) {
 #ifdef VITS_ESPEAK
     if(!phonetic)
     {
-#endif   
+#endif
     //auto normalized_text = this->prepare_for_tokenization(text, false, normalize);
     //printf("Normalized text: %s\n", normalized_text.c_str());
 /*
@@ -195,7 +195,7 @@ std::vector<int32_t> vits_tokenizer::tokenize(const std::string& text) {
 	std::string processed_text = text;
 	std::transform(processed_text.begin(), processed_text.end(), processed_text.begin(),
 		       [](unsigned char c){ return std::tolower(c); });
-	
+
 	std::vector<int32_t> tokens = tokenize_fast(processed_text);
 	std::vector<int32_t> tokens_final;
 	if (add_blank) {
@@ -237,7 +237,7 @@ std::vector<int32_t> vits_tokenizer::tokenize(const std::string& text) {
 	}
 	return tokens;
     }
-#endif  	
+#endif
 }
 
 int vits_tokenizer::convert_token_to_id(const std::string& token) {

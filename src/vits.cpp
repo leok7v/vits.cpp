@@ -1,5 +1,6 @@
 #include "include/vits.h"
-#include <ggml/ggml-alloc.h>
+#include "ggml/ggml-alloc.h"
+#include "ggml-util.h"
 #include "include/debug.h"
 #include <memory>
 #include <thread>

@@ -10,13 +10,12 @@
 #include <sstream>
 #include <ggml/ggml-alloc.h>
 #include "vits_model_data.h"
-#include "ggml-util.h"
+//#include "ggml-util.h"
 
 typedef struct ggml_tensor * tensor_t;
 
 class vits_model {
 private:
-    int verbose;
     std::unique_ptr<vits_model_data> model;
     struct ggml_context * weights_ctx = nullptr;
     struct ggml_tensor * debug_tensor = nullptr;
@@ -82,9 +81,10 @@ public:
             float min_bin_height = 1e-3,
             float min_derivative = 1e-3);
     std::vector<float> process(std::string text);
+    int verbose;
 };
 
-#define VITS_API extern "C" __attribute__((visibility("default")))
+#define VITS_API extern "C" // __attribute__((visibility("default")))
 
 typedef struct vits_result {
     float * data;

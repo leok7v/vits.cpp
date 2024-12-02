@@ -5,4 +5,9 @@ venv
 cmake-build-debug
 cmake-build-release
 build_ios
-build
+build/
+lib/
+bin/
+msvc/.vs
+msvc/*.user
+
